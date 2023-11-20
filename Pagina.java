@@ -1,3 +1,5 @@
+package Clases;
+
 public class Pagina {
     private Cliente cl[] = new Cliente[50];
     private Vendedor vn[] = new Vendedor[50];

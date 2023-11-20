@@ -1,9 +1,13 @@
+package Vista;
 import java.util.Scanner;
+
+import Clases.Pagina;
+import Metodos.Metodos;
 public class Sistema {
         Scanner sc = new Scanner(System.in);
-        static Sistema sis = new Sistema();
+        Sistema sis = new Sistema();
         Pagina pag = new Pagina();
-        Metodos met = new Metodos();
+        static Metodos met = new Metodos();
 
         public static void main(String[] args) {
             Sistema sis = new Sistema();
@@ -40,7 +44,6 @@ public class Sistema {
                             }
                             case 2:{
                                 System.out.println();
-                                met.menuSeller();
                                 break;
                             }
                             case 3:{System.out.println();

@@ -1,4 +1,4 @@
-
+package Clases;
 public class Vendedor {
     private String nameV;
     private String userV;

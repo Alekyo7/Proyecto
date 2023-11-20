@@ -1,3 +1,4 @@
+package Clases;
 
 public class Cliente {
     private String nameC;
@@ -20,7 +21,7 @@ public class Cliente {
     }
     public String getUserC(){
         return userC;
-    }
+    }   
     public String getPassC(){
         return pWc;
     }
