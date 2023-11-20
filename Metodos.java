@@ -1,27 +1,32 @@
+package Metodos;
 import java.util.Scanner;
 
+import Clases.Cliente;
+import Clases.Vendedor;
+import Vista.Sistema;
+
 public class Metodos {
-    
-    static Sistema sis = new Sistema();
-    Pagina pag = new Pagina();
+    private Cliente cl[] = new Cliente[50];
+    private Vendedor vn[] = new Vendedor[50];
+    Sistema sis = new Sistema();
     Scanner sc = new Scanner(System.in);
     Metodos met = new Metodos();
 
     public void crear(int hos){
         System.out.print("Ingrese el nombre del hospedaje: ");
-        pag.getVendedor()[hos].getHospedaje().setNameL(sc.nextLine());
+        vn[hos].getHospedaje().setNameL(sc.nextLine());
         System.out.println();
 
         System.out.print("Ingrese la ubicación del hospedaje: ");
-        pag.getVendedor()[hos].getHospedaje().setLocation(sc.next());
+        vn[hos].getHospedaje().setLocation(sc.next());
         System.out.println();
 
         System.out.print("Ingrese el aforo del hospedaje: ");
-        pag.getVendedor()[hos].getHospedaje().setAforo(sc.nextInt());
+        vn[hos].getHospedaje().setAforo(sc.nextInt());
         System.out.println();
 
         System.out.print("Ingrese el costo del hospedaje por dia y noche: ");
-        pag.getVendedor()[hos].getHospedaje().setCost(sc.nextDouble());
+        vn[hos].getHospedaje().setCost(sc.nextDouble());
         System.out.println();
     }
 
@@ -36,28 +41,28 @@ public class Metodos {
         System.out.println("(6) Volver");
         switch(opc){
             case 1:{System.out.print("Ingrese el nuevo nombre: ");
-                pag.getVendedor()[hos].getHospedaje().setNameL(sc.nextLine());
+                vn[hos].getHospedaje().setNameL(sc.nextLine());
                 break;
             }
             case 2:{System.out.print("Ingrese la nueva ubicación: ");
-                pag.getVendedor()[hos].getHospedaje().setLocation(sc.next());
+                vn[hos].getHospedaje().setLocation(sc.next());
                 break;
             }
             case 3:{System.out.print("Ingrese el nuevo aforo: ");
-                pag.getVendedor()[hos].getHospedaje().setAforo(sc.nextInt());
+                vn[hos].getHospedaje().setAforo(sc.nextInt());
                 break;
             }
             case 4:{System.out.print("Ingrese el nuevo precio: ");
-                pag.getVendedor()[hos].getHospedaje().setCost(sc.nextDouble());
+                vn[hos].getHospedaje().setCost(sc.nextDouble());
                 break;
             }
             case 5:{System.out.print("Ingrese el nueva disponibilidad: ");
                 String dispo = sc.next().toUpperCase();
                 if(dispo.equals(dispo)){
-                    pag.getVendedor()[hos].getHospedaje().setDispo(true);
+                    vn[hos].getHospedaje().setDispo(true);
                 }
                 else{
-                    pag.getVendedor()[hos].getHospedaje().setDispo(false);
+                    vn[hos].getHospedaje().setDispo(false);
                 }
                 break;
             }
@@ -79,7 +84,6 @@ public class Metodos {
         //metodo de ver la critica del cliente, creo jeje
     }
     public void menuCliente(){
-        pag.getCliente();
         int opc = 0;
         do{
         System.out.println("""
@@ -135,7 +139,7 @@ public class Metodos {
             hos = sc.nextInt();
             //if(lodgment[i].getDisponivilidad = true)... else syso("el hospedaje no está disponible")
             //cambiar la disponivilidad del hospedaje
-            if(pag.getVendedor()[hos].getHospedaje().getDispo() == true){
+            if(vn[hos].getHospedaje().getDispo() == true){
             System.out.println("Su hospedaje ya esta reservado, desea calificarlo?");
             System.out.println("1. Calificar");
             System.out.println("2. Omitir calificacion");
@@ -155,10 +159,10 @@ public class Metodos {
             }
     }
     public void calificar(int hos){
-        System.out.println("De 1 a 5, que calificacion le da al hospedaje " + pag.getVendedor()[hos].getHospedaje().getNameL() + "?");
+        System.out.println("De 1 a 5, que calificacion le da al hospedaje " + vn[hos].getHospedaje().getNameL() + "?");
         System.out.println("1 pesimo ; 5 excelente");
-        pag.getVendedor()[hos].getHospedaje().setCalificacion(sc.nextInt());
-        if(pag.getVendedor()[hos].getHospedaje().getCalificacion() < 5 && pag.getVendedor()[hos].getHospedaje().getCalificacion() > 0){
+        vn[hos].getHospedaje().setCalificacion(sc.nextInt());
+        if(vn[hos].getHospedaje().getCalificacion() < 5 && vn[hos].getHospedaje().getCalificacion() > 0){
         System.out.println("Calificación guardada");
         }else{
             System.out.println("La calificacion no esta en el rango de 1 a 5, vuelva a digitarla");
@@ -166,8 +170,8 @@ public class Metodos {
         }
     }
     public void mostrarHospedajes(){
-        for (int i = 0; i < pag.getVendedor().length; i++){
-            System.out.println(pag.getVendedor()[i].getHospedaje().toString());
+        for (int i = 0; i < vn.length; i++){
+            System.out.println(vn[i].getHospedaje().toString());
         }
     }
     public void buscarNombre(){
@@ -175,10 +179,10 @@ public class Metodos {
         int opc = 0;
         System.out.println("Digite el nombre del hospedaje que busca");
         name = sc.next();
-        for(int i = 0; i < pag.getVendedor().length; i++){
-        if(pag.getVendedor()[i].getHospedaje().getNameL().equals(name)){
+        for(int i = 0; i < vn.length; i++){
+        if(vn[i].getHospedaje().getNameL().equals(name)){
             System.out.println("Se encontro el hospedaje que busca");
-            System.out.println(pag.getVendedor()[i].getHospedaje().toString());
+            System.out.println(vn[i].getHospedaje().toString());
         }else{
             System.out.println("El hospedaje que busca no fue encontrado");
             System.out.println("1. Buscar otro hospedaje nuevamente");
@@ -198,10 +202,10 @@ public class Metodos {
         int opc = 0;
         System.out.println("Digite la ubicacion del hospedaje que busca");
         ubicacion = sc.next();
-        for(int i = 0; i < pag.getVendedor().length; i++){
-        if(pag.getVendedor()[i].getHospedaje().getLocation().equals(ubicacion)){
+        for(int i = 0; i < vn.length; i++){
+        if(vn[i].getHospedaje().getLocation().equals(ubicacion)){
             System.out.println("Se encontro el hospedaje que busca");
-            System.out.println(pag.getVendedor()[i].getHospedaje().toString());
+            System.out.println(vn[i].getHospedaje().toString());
         }else{
             System.out.println("El hospedaje que busca no fue encontrado");
             System.out.println("1. Buscar otro hospedaje nuevamente");
@@ -222,10 +226,10 @@ public class Metodos {
         int opc = 0;
         System.out.println("Digite el precio del hospedaje que busca");
         precio = sc.nextDouble();
-        for(int i = 0; i < pag.getVendedor().length; i++){
-        if(pag.getVendedor()[i].getHospedaje().getCost() == precio){
+        for(int i = 0; i < vn.length; i++){
+        if(vn[i].getHospedaje().getCost() == precio){
             System.out.println("Se encontro el hospedaje que busca");
-            System.out.println(pag.getVendedor()[i].getHospedaje().toString());
+            System.out.println(vn[i].getHospedaje().toString());
         }else{
             System.out.println("El hospedaje que busca no fue encontrado");
             System.out.println("1. Buscar otro hospedaje nuevamente");
@@ -246,10 +250,10 @@ public class Metodos {
         int opc = 0;
         System.out.println("Digite el aforo del hospedaje que busca");
         aforo = sc.nextInt();
-        for(int i = 0; i < pag.getVendedor().length; i++){
-        if(pag.getVendedor()[i].getHospedaje().getAforo() == aforo){
+        for(int i = 0; i < vn.length; i++){
+        if(vn[i].getHospedaje().getAforo() == aforo){
             System.out.println("Se encontro el hospedaje que busca");
-            System.out.println(pag.getVendedor()[i].getHospedaje().toString());
+            System.out.println(vn[i].getHospedaje().toString());
         }else{
             System.out.println("El hospedaje que busca no fue encontrado");
             System.out.println("1. Buscar otro hospedaje nuevamente");
